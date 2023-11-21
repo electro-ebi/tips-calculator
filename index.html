@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              strongcyan: "hsl(172, 67%, 45%)",
+              darkcyan: "hsl(183, 100%, 15%)",
+              Darkgrayishcyan: "hsl(186, 14%, 43%)",
+              Grayishcyan: "hsl(184, 14%, 56%)",
+              Lightgrayishcyan: "hsl(185, 41%, 84%)",
+              Verylightgrayishcyan: "hsl(189, 41%, 97%)",
+              White: "hsl(0, 0%, 100%)",
+            },
+            screens: {
+              vsm: "375px",
+              // => @media (min-width: 576px) { ... }
+
+              vlg: "1440px",
+              // => @media (min-width: 1440px) { ... }
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body class="bg-Lightgrayishcyan">
+    <section class="">
+      <div class="lg:mt-20 mt-10 -mb-14">
+        <h1 class="text-xl text-Darkgrayishcyan tracking-[.5rem] text-center">
+          SPLI <br />
+          TTER
+        </h1>
+      </div>
+
+      <div
+        class="container lg:flex max-w-[50rem] mt-24 bg-White mx-auto rounded-3xl p-5"
+      >
+        <div class="w-1/2 vsm:w-full h-full bg-White pr-5">
+          <div class="p-5">
+            <div>
+              <h6 class="text-sm text-Darkgrayishcyan">Bill</h6>
+              <div
+                class="bg-Verylightgrayishcyan mt-2 border-solid border-2 border-Verylightgrayishcyan hover:border-strongcyan hover:border-solid font-bold text-darkcyan w-full rounded-[5px] py-2"
+              >
+                <div class="flex pr-3">
+                  <div class="px-2 pl-3 py-1.5">
+                    <img class=" " src="./images/icon-dollar.svg" alt="" />
+                  </div>
+
+                  <input
+                    class="remove-arrow text-right bg-inherit outline-none w-full text-xl h-full"
+                    type="number"
+                    id="bill"
+                    placeholder="0"
+                    maxlength="10"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="mt-7 text-White">
+              <h6 class="text-sm text-Darkgrayishcyan">Select Tip %</h6>
+              <div class="">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+                  <div
+                    class="bg-darkcyan rounded-[5px] hover:bg-Lightgrayishcyan hover:text-darkcyan"
+                  >
+                    <button id="tip5" class="tipBtn w-full py-2 text-xl h-full">
+                      5%
+                    </button>
+                  </div>
+                  <div
+                    class="bg-darkcyan rounded-[5px] hover:bg-Lightgrayishcyan hover:text-darkcyan"
+                  >
+                    <button
+                      id="tip10"
+                      class="tipBtn w-full py-2 text-xl h-full"
+                    >
+                      10%
+                    </button>
+                  </div>
+                  <div
+                    class="bg-darkcyan rounded-[5px] hover:bg-Lightgrayishcyan hover:text-darkcyan"
+                  >
+                    <button
+                      id="tip15"
+                      class="tipBtn w-full py-2 text-xl h-full"
+                    >
+                      15%
+                    </button>
+                  </div>
+                  <div
+                    class="bg-darkcyan rounded-[5px] hover:bg-Lightgrayishcyan hover:text-darkcyan"
+                  >
+                    <button
+                      id="tip25"
+                      class="tipBtn w-full py-2 text-xl h-full"
+                    >
+                      25%
+                    </button>
+                  </div>
+                  <div
+                    class="bg-darkcyan rounded-[5px] hover:bg-Lightgrayishcyan hover:text-darkcyan"
+                  >
+                    <button
+                      id="tip50"
+                      class="tipBtn w-full py-2 text-xl h-full"
+                    >
+                      50%
+                    </button>
+                  </div>
+                  <div
+                    id="custonBtn"
+                    class="bg-Verylightgrayishcyan border-solid border-2 border-Verylightgrayishcyan hover:border-strongcyan hover:border-solid rounded-[5px]"
+                  >
+                    <input
+                      class="bg-inherit placeholder-Darkgrayishcyan text-xl pr-2 text-darkcyan outline-none rounded-[5px] w-full text-right h-full"
+                      type="number"
+                      id="tip-custom"
+                      max="100"
+                      placeholder="Custom"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-7">
+              <div class="flex justify-between text-sm">
+                <div class="text-Darkgrayishcyan">Number of People</div>
+                <div id="error" class="text-red-500 hidden">Can't be zero</div>
+              </div>
+              <div
+                id="people-main-div"
+                class="bg-Verylightgrayishcyan border-solid border-2 border-Verylightgrayishcyan hover:border-strongcyan hover:border-solid mt-1 font-bold text-darkcyan w-full rounded-[5px] py-2"
+              >
+                <div class="flex pr-3">
+                  <div class="px-2 pl-3 py-1.5">
+                    <img class=" " src="./images/icon-person.svg" alt="" />
+                  </div>
+                  <input
+                    class="remove-arrow text-right bg-inherit outline-none w-full text-xl h-fit"
+                    type="number"
+                    id="people"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-1/2 vsm:w-full h-full bg-darkcyan rounded-xl p-10">
+          <div>
+            <div class="flex justify-between">
+              <div class="py-3">
+                <h3 class="text-White text-sm">Tip Amount</h3>
+                <p class="text-Darkgrayishcyan text-xs">/ person</p>
+              </div>
+              <div class="flex items-center font-bold">
+                <h1
+                  id="tip-amount-h"
+                  class="ml-2 max-w-[200px] text-[2.5rem] text-strongcyan"
+                >
+                  $0.00
+                </h1>
+              </div>
+            </div>
+            <div class="flex justify-between mt-7">
+              <div class="py-3">
+                <h3 class="text-White text-sm">Total</h3>
+                <p class="text-Darkgrayishcyan text-xs">/ person</p>
+              </div>
+              <div class="flex items-center font-bold">
+                <h1
+                  id="total-amount-h"
+                  class="ml-2 text-[2.5rem] max-w-[220px] text-strongcyan"
+                >
+                  $0.00
+                </h1>
+              </div>
+            </div>
+
+            <div>
+              <button
+                id="resetBtn"
+                disabled
+                class="bg-strongcyan font-bold opacity-25 text-darkcyan w-full mt-24 rounded-[5px] py-2"
+              >
+                RESET
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
